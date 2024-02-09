@@ -1,18 +1,18 @@
+# Use the official Python image as a base image
 FROM python:3.8
 
-ENV PYTHONDONTTWRITEBYTECODE 1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /projects/okulyk
+# Set the working directory inside the container
+WORKDIR /code
 
-COPY ./requirements.txt .
+# Copy the dependencies file to the working directory
+COPY requirements.txt /code/
 
-RUN pip install -r requirements.txt
+# Install dependencies
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY . .
-
-EXPOSE 8000
-
-# RUN ["python", "manage.py", "migrate"]
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Copy the project files to the working directory
+COPY . /code/
