@@ -1,0 +1,24 @@
+version: "3.5"
+   
+services:
+  okulyk_dev:
+    build: .
+    restart: always
+    container_name: okulyk-dev
+    volumes:
+      - ".:/projects/okulyk"
+    ports:
+      - "${PORT}:8000"
+    environment:
+      DEBUG: "True"
+    networks:
+      - https
+      - database
+
+networks:
+  https:
+    external:
+      name: ${HTTPS_NETWORK}
+  database:
+    external:
+      name: ${DATABASE_NETWORK}
