@@ -14,6 +14,7 @@ COPY requirements.txt /code/
 # Install dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
 RUN django-admin startproject mysite
+RUN cd mysite
 RUN ["python", "manage.py", "migrate"]
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
