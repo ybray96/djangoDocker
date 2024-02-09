@@ -1,24 +1,10 @@
-version: "3.5"
-   
-services:
-  okulyk_dev:
-    build: .
-    restart: always
-    container_name: okulyk-dev
-    volumes:
-      - ".:/projects/okulyk"
-    ports:
-      - "${PORT}:8000"
-    environment:
-      DEBUG: "True"
-    networks:
-      - https
-      - database
+version: '3'
 
-networks:
-  https:
-    external:
-      name: ${HTTPS_NETWORK}
-  database:
-    external:
-      name: ${DATABASE_NETWORK}
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
