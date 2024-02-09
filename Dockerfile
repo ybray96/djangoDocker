@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory inside the container
-WORKDIR /code
+WORKDIR ~/djangoDocker
 
 # Copy the dependencies file to the working directory
 COPY requirements.txt /code/
