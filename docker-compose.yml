@@ -1,17 +1,20 @@
-version: '3'
-
+version: "3.5"
+   
 services:
-  web:
+  res_dev:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    container_name: resVideo-dev
     volumes:
-      - .:/code
+      - ".:/projects/projectname/"
     ports:
-      - "8081:8000"
+      - "${PORT}:8000"
+    environment:
+      DEBUG: "True"
     networks:
       - https
+  
 networks:
   https:
     external:
-      name: https_network
-  
+      name: ${HTTPS_NETWORK}
